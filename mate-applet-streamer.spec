@@ -1,11 +1,11 @@
 Name:           mate-applet-streamer
-Version:        0.0.1
-Release:        3%{?dist}
+Version:        0.0.4
+Release:        1%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
-Source:         http://www.zavedil.com/wp-content/uploads/2013/09/%{name}-%{version}.tar.gz
+Source:         http://www.zavedil.com/wp-content/uploads/2013/11/%{name}-%{version}.tar.gz
 
 BuildRequires:  libnotify-devel
 BuildRequires:  gstreamer1-devel
@@ -57,14 +57,18 @@ fi
 %files -f %{name}.lang
 %doc AUTHORS BUGS COPYING ChangeLog README TODO
 %{_libexecdir}/streamer_applet
+%{_libdir}/bonobo/servers/StreamerAppletFactory.server
 %{_datadir}/mate-panel/applets/org.mate.applets.StreamerApplet.mate-panel-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StreamerApplet.service
 %dir %{_datadir}/streamer_applet
 %{_datadir}/streamer_applet/streamer.sqlite
-%{_datadir}/pixmaps/applet_streamer_*.png
+%{_datadir}/pixmaps/applet_streamer*.png
 %{_datadir}/icons/hicolor/*/apps/applet_streamer.png
 
 %changelog
+* Tue Nov 05 2013 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.0.4-1
+- update to 0.0.4
+
 * Tue Sep 17 2013 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.0.1-3
 - rebuild against new source
 - remove PackageKit-glib-devel BR
