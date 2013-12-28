@@ -1,5 +1,5 @@
 Name:           mate-applet-streamer
-Version:        0.0.4
+Version:        0.0.5
 Release:        1%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
@@ -66,6 +66,9 @@ fi
 %{_datadir}/icons/hicolor/*/apps/applet_streamer.png
 
 %changelog
+* Sat Dec 28 2013 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.0.5-1
+- update to 0.0.5
+
 * Tue Nov 05 2013 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.0.4-1
 - update to 0.0.4
 
