@@ -1,6 +1,6 @@
 Name:           mate-applet-streamer
 Version:        0.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
 License:        GPLv2+
@@ -67,6 +67,9 @@ fi
 
 
 %changelog
+* Mon Sep 01 2014 Sérgio Basto <sergio@serjux.com> - 0.1.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
 * Wed Jul 09 2014 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.1.0-2
 - fix build
 
