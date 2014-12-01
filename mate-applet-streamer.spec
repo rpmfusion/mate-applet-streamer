@@ -1,11 +1,11 @@
 Name:           mate-applet-streamer
-Version:        0.1.0
-Release:        3%{?dist}
+Version:        0.1.2
+Release:        1%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
-Source:         http://www.zavedil.com/wp-content/uploads/2014/04/%{name}-%{version}.tar.gz
+Source:         http://www.zavedil.com/wp-content/uploads/2014/11/%{name}-%{version}.tar.gz
 
 BuildRequires:  libnotify-devel
 BuildRequires:  gstreamer1-devel
@@ -67,6 +67,9 @@ fi
 
 
 %changelog
+* Mon Dec 01 2014 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.1.2-1
+- update to 0.1.2 release
+
 * Mon Sep 01 2014 Sérgio Basto <sergio@serjux.com> - 0.1.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
