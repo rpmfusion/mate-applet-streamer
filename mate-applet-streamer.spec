@@ -1,11 +1,11 @@
 Name:           mate-applet-streamer
-Version:        0.1.3
+Version:        0.3.2
 Release:        1%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
-Source:         http://www.zavedil.com/wp-content/uploads/2014/11/%{name}-%{version}.tar.gz
+Source:         http://www.zavedil.com/wp-content/uploads/2015/12/%{name}-%{version}.tar.gz
 
 BuildRequires:  libnotify-devel
 BuildRequires:  gstreamer1-devel
@@ -28,7 +28,11 @@ Icecast directory listing in included.
 %setup -q
 
 %build
-%configure
+%configure \
+    --libdir=%{_prefix}/lib \
+    --enable-gtk=2 \
+    --enable-notify \
+    --enable-gstreamer=1.0
 
 make %{?_smp_mflags} V=1
 
@@ -37,6 +41,7 @@ make %{?_smp_mflags} V=1
 
 # Do not install doc files: they are handled as rpm doc files.
 rm -rf ${RPM_BUILD_ROOT}%{_docdir}
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %find_lang %{name}
 
@@ -48,16 +53,19 @@ rm -rf ${RPM_BUILD_ROOT}%{_docdir}
 if [ $1 -eq 0 ] ; then
     /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
     /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 fi
 
 %posttrans
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+/usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %files -f %{name}.lang
 %doc AUTHORS BUGS COPYING ChangeLog README TODO
 %{_libexecdir}/streamer_applet
-%{_libdir}/bonobo/servers/StreamerAppletFactory.server
+%{_prefix}/lib/bonobo/servers/StreamerAppletFactory.server
+%{_datadir}/glib-2.0/schemas/org.mate.panel.applet.StreamerApplet.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.StreamerApplet.mate-panel-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StreamerApplet.service
 %dir %{_datadir}/streamer_applet
@@ -67,6 +75,19 @@ fi
 
 
 %changelog
+* Tue Dec 22 2015 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.3.2-1
+- update to 0.3.2 release
+- add gesettings schema file
+
+* Sun Aug 31 2015 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.2.3.1
+- update to 0.2.3 release
+- missing text in buttons for gtk3 build is fixed
+
+* Sun Aug 23 2015 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.2.2-1
+- update to 0.2.2 release
+- use --libdir=%{_prefix}/lib for bonobo server, fix bz (#3721)
+- remove non needed BR gstreamer1-plugins-base-tools
+
 * Wed Dec 31 2014 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.1.3-1
 - update to 0.1.3 release
 - fix rpmmfusion bz (#3389)
