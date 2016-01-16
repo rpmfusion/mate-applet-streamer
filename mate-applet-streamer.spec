@@ -1,11 +1,11 @@
 Name:           mate-applet-streamer
-Version:        0.3.2
+Version:        0.3.10
 Release:        1%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
-Source:         http://www.zavedil.com/wp-content/uploads/2015/12/%{name}-%{version}.tar.gz
+Source:         http://www.zavedil.com/wp-content/uploads/2016/01/%{name}-%{version}.tar.gz
 
 BuildRequires:  libnotify-devel
 BuildRequires:  gstreamer1-devel
@@ -75,6 +75,9 @@ fi
 
 
 %changelog
+* Sat Jan 16 2016 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.3.10-1
+- update to 0.3.10 release
+
 * Tue Dec 22 2015 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.3.2-1
 - update to 0.3.2 release
 - add gesettings schema file
