@@ -1,6 +1,6 @@
 Name:           mate-applet-streamer
 Version:        0.3.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        MATE online radio streamer applet
 Group:          Applications/System
 License:        GPLv2+
@@ -11,7 +11,7 @@ BuildRequires:  libnotify-devel
 BuildRequires:  gstreamer1-devel
 BuildRequires:  gstreamer1-plugins-base-devel
 BuildRequires:  gstreamer1-plugins-base-tools
-BuildRequires:  gtk2-devel
+BuildRequires:  gtk3-devel
 BuildRequires:  sqlite-devel
 BuildRequires:  mate-panel-devel
 
@@ -30,7 +30,7 @@ Icecast directory listing in included.
 %build
 %configure \
     --libdir=%{_prefix}/lib \
-    --enable-gtk=2 \
+    --enable-gtk=3 \
     --enable-notify \
     --enable-gstreamer=1.0
 
@@ -75,6 +75,9 @@ fi
 
 
 %changelog
+* Sun Dec 18 2016 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.3.10-2
+- build for gtk3
+
 * Sat Jan 16 2016 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.3.10-1
 - update to 0.3.10 release
 
