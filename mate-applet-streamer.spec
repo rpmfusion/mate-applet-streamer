@@ -7,6 +7,7 @@ License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
 Source:         http://www.zavedil.com/wp-content/uploads/2017/07/%{name}-%{version}.tar.gz
 
+BuildRequires:  gcc
 BuildRequires:  libnotify-devel
 BuildRequires:  gstreamer1-devel
 BuildRequires:  gstreamer1-plugins-base-devel
