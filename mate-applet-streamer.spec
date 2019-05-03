@@ -1,8 +1,7 @@
 Name:           mate-applet-streamer
 Version:        0.4.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        MATE online radio streamer applet
-Group:          Applications/System
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
 Source:         http://www.zavedil.com/wp-content/uploads/2017/07/%{name}-%{version}.tar.gz
@@ -26,7 +25,7 @@ from your system tray or panel with a single click.
 Icecast directory listing in included.
 
 %prep
-%setup -q
+%autosetup
 
 %build
 %configure \
@@ -35,47 +34,36 @@ Icecast directory listing in included.
     --enable-notify \
     --enable-gstreamer=1.0
 
-make %{?_smp_mflags} V=1
+%{make_build} V=1
 
 %install
 %{make_install}
 
 # Do not install doc files: they are handled as rpm doc files.
-rm -rf ${RPM_BUILD_ROOT}%{_docdir}
-rm -rf ${RPM_BUILD_ROOT}%{_datadir}/glib-2.0/schemas/gschemas.compiled
+rm -rf %{buildroot}%{_docdir}
+rm -rf %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %find_lang %{name}
 
-
-%post
-/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-
-%postun
-if [ $1 -eq 0 ] ; then
-    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
-fi
-
-%posttrans
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-/usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
-
-
 %files -f %{name}.lang
-%doc AUTHORS BUGS COPYING ChangeLog README TODO
+%doc AUTHORS BUGS ChangeLog README TODO
+%license COPYING
 %{_libexecdir}/streamer_applet
 %{_prefix}/lib/bonobo/servers/StreamerAppletFactory.server
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.StreamerApplet.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.StreamerApplet.mate-panel-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StreamerApplet.service
-%dir %{_datadir}/streamer_applet
-%{_datadir}/streamer_applet/streamer.sqlite
+%{_datadir}/streamer_applet/
 %{_datadir}/pixmaps/applet_streamer*.png
 %{_datadir}/icons/hicolor/*/apps/applet_streamer.png
 
 
 %changelog
+* Fri May 03 2019 Leigh Scott <leigh123linux@gmail.com> - 0.4.0-6
+- Rebuild for new gstreamer1 version
+- Remove Group tag
+- Remove scriptlets
+
 * Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
