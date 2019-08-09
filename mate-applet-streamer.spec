@@ -1,6 +1,6 @@
 Name:           mate-applet-streamer
 Version:        0.4.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        MATE online radio streamer applet
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
@@ -59,6 +59,9 @@ rm -rf %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 
 %changelog
+* Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4.0-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Fri May 03 2019 Leigh Scott <leigh123linux@gmail.com> - 0.4.0-6
 - Rebuild for new gstreamer1 version
 - Remove Group tag
