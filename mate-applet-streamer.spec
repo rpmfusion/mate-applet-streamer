@@ -1,6 +1,6 @@
 Name:           mate-applet-streamer
-Version:        0.4.0
-Release:        8%{?dist}
+Version:        0.4.1
+Release:        1%{?dist}
 Summary:        MATE online radio streamer applet
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
@@ -14,6 +14,8 @@ BuildRequires:  gstreamer1-plugins-base-tools
 BuildRequires:  gtk3-devel
 BuildRequires:  sqlite-devel
 BuildRequires:  mate-panel-devel
+BuildRequires:  gettext-devel
+BuildRequires:  automake
 
 # for GStreamer with nonfree codecs
 Requires:       gstreamer1-plugins-bad-freeworld
@@ -26,6 +28,8 @@ Icecast directory listing in included.
 
 %prep
 %autosetup
+
+NOCONFIGURE=1 ./autogen.sh
 
 %build
 %configure \
@@ -59,6 +63,9 @@ rm -rf %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 
 %changelog
+* Sun Mar 15 2020 Wolfgang Ulbrich <chat-to-me@raveit.de> - 0.4.1-1
+- update to 0.4.1 release
+
 * Wed Feb 05 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4.0-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
