@@ -1,10 +1,12 @@
 Name:           mate-applet-streamer
 Version:        0.4.1
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        MATE online radio streamer applet
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
 Source:         http://www.zavedil.com/wp-content/uploads/2017/07/%{name}-%{version}.tar.gz
+# Fix FTBFS with gcc14 -Werror=incompatible-pointer-types
+Patch0:         mate-applet-streamer-0.4.1-type-cast.patch
 
 BuildRequires:  gcc
 BuildRequires:  libnotify-devel
@@ -27,7 +29,7 @@ from your system tray or panel with a single click.
 Icecast directory listing in included.
 
 %prep
-%autosetup
+%autosetup -p1
 
 NOCONFIGURE=1 ./autogen.sh
 
@@ -63,6 +65,9 @@ rm -rf %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 
 %changelog
+* Mon Oct 21 2024 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.4.1-10
+- Fix FTBFS with gcc14 -Werror=incompatible-pointer-types
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.4.1-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
