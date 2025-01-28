@@ -1,6 +1,6 @@
 Name:           mate-applet-streamer
 Version:        0.4.1
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        MATE online radio streamer applet
 License:        GPLv2+
 URL:            http://www.zavedil.com/online-radio-applet
@@ -65,6 +65,9 @@ rm -rf %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 
 %changelog
+* Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.4.1-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
 * Mon Oct 21 2024 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.4.1-10
 - Fix FTBFS with gcc14 -Werror=incompatible-pointer-types
 
